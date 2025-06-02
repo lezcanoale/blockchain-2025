@@ -49,8 +49,10 @@ function App() {
       });
       await tx.wait();
       alert('Compra exitosa!');
-      loadMarket();
-      getUserBalance();
+      await Promise.all([
+        loadMarket(),
+        getUserBalance()
+      ]);
     } catch (error) {
       console.error('Error al comprar NFT:', error);
       alert('Error al comprar NFT: ' + (error.reason || error.message));
